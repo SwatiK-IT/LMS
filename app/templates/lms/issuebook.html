@@ -1,0 +1,81 @@
+{% extends "common-fragments/layout.html" %}
+
+
+
+
+{% block content %}
+
+
+
+
+
+<form  method="post" action="/issuebook">
+
+{{ form.csrf_token }}
+
+<div class="container">
+
+
+<table  class="table table-hover">
+<tbody>
+<tr>
+    <td>
+      <h4 class='text-center'>Select Book for Issue </h4 >
+
+</td>
+
+   &nbsp;<td>
+
+        <select name="book" class="form-control" required autofocus placeholder='Select Book for Issuing'>
+
+            {% for book in books %}
+            {% if book.availablenoofcopies==0 or (book in current_user.book) %}
+            <option value='{{ book.id }}' name='book_id' disabled> Title: {{ book.title }} - Author: {{ book.authors }} - ISBN : {{ book.isbn}} }}</option>
+            {% elif request.args.get('book') == book.id %}
+            <option value='{{ book.id }}' name=book_id' selected>Title: {{ book.title }} - Author {{ book.authors }} - ISBN : {{ book.isbn}}</option>
+            {% else %}
+            <option value='{{ book.id }}' name='book_id'>Title: {{ book.title }} - Author {{ book.authors }} - ISBN : {{ book.isbn}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+
+</td>
+</tr>
+<tr>
+<td>
+
+    <h4 class='text-center'>Select Member to Issue </h4 >
+</td>
+
+<td>
+   <select name="issued_to" class="form-control" required autofocus placeholder='Select Member  for Issuing'>
+
+
+        {% for user in users %}
+
+            <option value='{{ user.userid }}' name='issued_to'> {{ user.username }} -- {{ user.userid }}  </option>
+
+      {% endfor %}
+        </select>
+
+
+
+</td>
+</tr>
+<tr>
+    <td colspan="2">&nbsp;</td>
+    <td colspan="1">
+
+           <button class='btn btn-sm btn-primary btn-block' type='submit'>Issue Book</button>
+    </td>
+</tr>
+</tbody>
+
+</table>
+
+
+    </div>
+</form>
+
+
+{% endblock %}

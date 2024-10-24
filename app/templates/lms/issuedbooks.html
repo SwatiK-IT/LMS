@@ -1,0 +1,74 @@
+{% extends "common-fragments/layout.html" %}
+
+
+
+
+{% block content %}
+
+
+   <h3> Current Issued Books</h3>
+
+
+
+    <br>
+
+<table  class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Authors</th>
+      <th scope="col">Publisher</th>
+      <th scope="col">ISBN</th>
+      <th scope="col">username</th>
+        <th scope="col">Issued On</th>
+                <th scope="col">Return Due Date</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for record in booksissued %}
+
+    <tr>
+
+      <td>{{ record.bookissuance.title }}</td>
+    <td>{{ record.bookissuance.authors }}</td>
+     <td>{{ record.bookissuance.publisher }}</td>
+     <td>{{ record.bookissuance.isbn }}</td>
+     <td>{{ record.bookissuancebyuser.username }}</td>
+             <td>
+                            {% if record.issuance_date %}
+                 {{ record.issuance_date.strftime('%d-%m-%Y')  }}
+              {% else %} - {% endif %}
+
+
+             </td>
+
+             <td>
+
+                 {% if record.to_be_returned_by_date %}
+                 {{ record.to_be_returned_by_date.strftime('%d-%m-%Y')  }}
+              {% else %} - {% endif %}
+
+
+             </td>
+     <td>
+         <form action="{{ url_for('lms.request_renewal', book_id=record.bookissuance.id) }}" method="POST">
+                    <button type="submit" class="btn btn-warning">Request Renewal</button>
+                </form>
+     </td>
+
+
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
+
+
+{% endblock %}
