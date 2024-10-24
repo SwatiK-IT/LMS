@@ -1,0 +1,240 @@
+{% extends 'common-fragments/layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+        <div>
+
+
+			<h2>Welcome  {{session.name}}   [ UserID: {{ current_user.userid }} ]</h2>
+
+
+		</div>
+
+
+
+
+    <br>
+
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+
+         {% if   current_user.is_admin %}
+
+
+
+
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Issue a Book</h5>
+
+       <a href="/issuebook" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Renew a Book</h5>
+
+       <a href="/renewbook" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Return a Book</h5>
+
+       <a href="/returnbook" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Search a Book</h5>
+
+       <a href="/searchbooks" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Current Issued Book List</h5>
+
+       <a href="/issuedbooks" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+   <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Book Issuance History</h5>
+
+       <a href="/bookhistory" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Add Book to Library</h5>
+
+       <a href="/addbook" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Add Members</h5>
+
+       <a href="/register" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+  <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">View Members List</h5>
+
+       <a href="/listmembers" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+     {% elif not current_user.is_admin %}
+
+
+            <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">View My Currently Issued Books</h5>
+
+       <a href="/myissuedbookslist" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+            <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">View My Book Issue History</h5>
+
+       <a href="/myissuedbookshistory" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+            <div class="col">
+   <div class="card text-center text-white bg-warning mb-3" style="max-width: 18rem; height: 7rem">
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h5 class="card-text">Update My Details</h5>
+
+       <a href="/updatemydetails" class="card-text stretched-link"></a>
+  </div>
+</div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+             {% else %}
+               {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
